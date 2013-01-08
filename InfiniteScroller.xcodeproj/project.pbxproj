@@ -16,14 +16,16 @@
 		4CE6FEE9169C763E00719E30 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CE6FEE8169C763E00719E30 /* Default.png */; };
 		4CE6FEEB169C763E00719E30 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CE6FEEA169C763E00719E30 /* Default@2x.png */; };
 		4CE6FEED169C763E00719E30 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CE6FEEC169C763E00719E30 /* Default-568h@2x.png */; };
-		4CE6FEF0169C763E00719E30 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6FEEF169C763E00719E30 /* ViewController.m */; };
-		4CE6FEF3169C763E00719E30 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE6FEF1169C763E00719E30 /* ViewController_iPhone.xib */; };
-		4CE6FEF6169C763E00719E30 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE6FEF4169C763E00719E30 /* ViewController_iPad.xib */; };
 		4CE6FEFE169C763E00719E30 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE6FEFD169C763E00719E30 /* SenTestingKit.framework */; };
 		4CE6FEFF169C763E00719E30 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE6FED6169C763D00719E30 /* UIKit.framework */; };
 		4CE6FF00169C763E00719E30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE6FED8169C763D00719E30 /* Foundation.framework */; };
 		4CE6FF08169C763E00719E30 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4CE6FF06169C763E00719E30 /* InfoPlist.strings */; };
 		4CE6FF0B169C763E00719E30 /* InfiniteScrollerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6FF0A169C763E00719E30 /* InfiniteScrollerTests.m */; };
+		4CE6FF1C169C76FB00719E30 /* Scroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6FF14169C76FB00719E30 /* Scroller.m */; };
+		4CE6FF1D169C76FB00719E30 /* ScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6FF16169C76FB00719E30 /* ScrollController.m */; };
+		4CE6FF1E169C76FB00719E30 /* View.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6FF18169C76FB00719E30 /* View.m */; };
+		4CE6FF1F169C76FB00719E30 /* ViewOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6FF19169C76FB00719E30 /* ViewOverlay.m */; };
+		4CE6FF22169C787D00719E30 /* ContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6FF20169C787D00719E30 /* ContentController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,16 +52,22 @@
 		4CE6FEE8169C763E00719E30 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4CE6FEEA169C763E00719E30 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		4CE6FEEC169C763E00719E30 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		4CE6FEEE169C763E00719E30 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4CE6FEEF169C763E00719E30 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		4CE6FEF2169C763E00719E30 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
-		4CE6FEF5169C763E00719E30 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		4CE6FEFC169C763E00719E30 /* InfiniteScrollerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InfiniteScrollerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE6FEFD169C763E00719E30 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		4CE6FF05169C763E00719E30 /* InfiniteScrollerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "InfiniteScrollerTests-Info.plist"; sourceTree = "<group>"; };
 		4CE6FF07169C763E00719E30 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4CE6FF09169C763E00719E30 /* InfiniteScrollerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollerTests.h; sourceTree = "<group>"; };
 		4CE6FF0A169C763E00719E30 /* InfiniteScrollerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollerTests.m; sourceTree = "<group>"; };
+		4CE6FF14169C76FB00719E30 /* Scroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scroller.m; sourceTree = "<group>"; };
+		4CE6FF15169C76FB00719E30 /* Scroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scroller.h; sourceTree = "<group>"; };
+		4CE6FF16169C76FB00719E30 /* ScrollController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollController.m; sourceTree = "<group>"; };
+		4CE6FF17169C76FB00719E30 /* ScrollController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollController.h; sourceTree = "<group>"; };
+		4CE6FF18169C76FB00719E30 /* View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = View.m; sourceTree = "<group>"; };
+		4CE6FF19169C76FB00719E30 /* ViewOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewOverlay.m; sourceTree = "<group>"; };
+		4CE6FF1A169C76FB00719E30 /* View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View.h; sourceTree = "<group>"; };
+		4CE6FF1B169C76FB00719E30 /* ViewOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewOverlay.h; sourceTree = "<group>"; };
+		4CE6FF20169C787D00719E30 /* ContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentController.m; sourceTree = "<group>"; };
+		4CE6FF21169C787D00719E30 /* ContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,12 +127,18 @@
 		4CE6FEDC169C763D00719E30 /* InfiniteScroller */ = {
 			isa = PBXGroup;
 			children = (
+				4CE6FF20169C787D00719E30 /* ContentController.m */,
+				4CE6FF21169C787D00719E30 /* ContentController.h */,
+				4CE6FF14169C76FB00719E30 /* Scroller.m */,
+				4CE6FF15169C76FB00719E30 /* Scroller.h */,
+				4CE6FF16169C76FB00719E30 /* ScrollController.m */,
+				4CE6FF17169C76FB00719E30 /* ScrollController.h */,
+				4CE6FF18169C76FB00719E30 /* View.m */,
+				4CE6FF19169C76FB00719E30 /* ViewOverlay.m */,
+				4CE6FF1A169C76FB00719E30 /* View.h */,
+				4CE6FF1B169C76FB00719E30 /* ViewOverlay.h */,
 				4CE6FEE5169C763E00719E30 /* AppDelegate.h */,
 				4CE6FEE6169C763E00719E30 /* AppDelegate.m */,
-				4CE6FEEE169C763E00719E30 /* ViewController.h */,
-				4CE6FEEF169C763E00719E30 /* ViewController.m */,
-				4CE6FEF1169C763E00719E30 /* ViewController_iPhone.xib */,
-				4CE6FEF4169C763E00719E30 /* ViewController_iPad.xib */,
 				4CE6FEDD169C763E00719E30 /* Supporting Files */,
 			);
 			path = InfiniteScroller;
@@ -238,8 +252,6 @@
 				4CE6FEE9169C763E00719E30 /* Default.png in Resources */,
 				4CE6FEEB169C763E00719E30 /* Default@2x.png in Resources */,
 				4CE6FEED169C763E00719E30 /* Default-568h@2x.png in Resources */,
-				4CE6FEF3169C763E00719E30 /* ViewController_iPhone.xib in Resources */,
-				4CE6FEF6169C763E00719E30 /* ViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +288,11 @@
 			files = (
 				4CE6FEE3169C763E00719E30 /* main.m in Sources */,
 				4CE6FEE7169C763E00719E30 /* AppDelegate.m in Sources */,
-				4CE6FEF0169C763E00719E30 /* ViewController.m in Sources */,
+				4CE6FF1C169C76FB00719E30 /* Scroller.m in Sources */,
+				4CE6FF1D169C76FB00719E30 /* ScrollController.m in Sources */,
+				4CE6FF1E169C76FB00719E30 /* View.m in Sources */,
+				4CE6FF1F169C76FB00719E30 /* ViewOverlay.m in Sources */,
+				4CE6FF22169C787D00719E30 /* ContentController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,22 +321,6 @@
 				4CE6FEE0169C763E00719E30 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		4CE6FEF1169C763E00719E30 /* ViewController_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4CE6FEF2169C763E00719E30 /* en */,
-			);
-			name = ViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		4CE6FEF4169C763E00719E30 /* ViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4CE6FEF5169C763E00719E30 /* en */,
-			);
-			name = ViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 		4CE6FF06169C763E00719E30 /* InfoPlist.strings */ = {
