@@ -36,7 +36,7 @@ The project started as an adeptation to the PageControl project available for do
 
 
 * ContentController - inherits NSObject.
-* ScrollController - inherits from PageControl.
+* ScrollController - inherits from ContentController.
 * Scroller - inherits from UIViewController.
 * View - inherits from UIViewController.
 * OverlayView - inherits from UIViewController
