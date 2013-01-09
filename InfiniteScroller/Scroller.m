@@ -1,5 +1,5 @@
 //
-//  vcTwitter.m
+//  Scroller.m
 //  MichaelColon
 //
 //  Created by Michael Colon on 1/4/13.
@@ -16,6 +16,7 @@
 
 @synthesize scrollController;
 
+
 -(void) loadView {
 
   
@@ -30,19 +31,15 @@
   view.backgroundColor = [UIColor whiteColor];
 
   
-  UIPageControl *pageControl = [[UIPageControl alloc] initWithFrame:frame];
-  [view addSubview:pageControl];
-  
   UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:frame];
   scrollView.backgroundColor = [UIColor blackColor];
   
   [view addSubview:scrollView];
   scrollController.scrollView = scrollView;
   scrollController.parentView = view;
-  scrollController.pageControl = pageControl;
   
   self.view = view;
-  [scrollController awakeFromNib];
+  [scrollController loadView];
   
   
 }
@@ -50,15 +47,10 @@
 
 - (void)viewDidLoad
 {
-
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
 
-
--(void) viewDidAppear:(BOOL)animated {
-
-}
 
 - (void)didReceiveMemoryWarning
 {

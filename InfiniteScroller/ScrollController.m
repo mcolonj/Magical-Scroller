@@ -1,5 +1,5 @@
 //
-//  TwitterContentController.m
+//  ScrollController.m
 //  MichaelColon
 //
 //  Created by Michael Colon on 1/2/13.
@@ -21,7 +21,7 @@ static NSUInteger kNumberOfPages = 3;
 
 @implementation ScrollController
 
-@synthesize scrollView, pageControl, viewControllers, parentView;
+@synthesize scrollView, viewControllers, parentView;
 @synthesize overlayView = overlayView;
 
 
@@ -35,7 +35,44 @@ static NSUInteger kNumberOfPages = 3;
   
 }
 
-- (void)awakeFromNib
+/**************************************************************
+ 
+ -(void) loadView: will place three UIViews within a UIScrollView
+ 
+ +-------------------------------------------------------------+
+ |                                                             |
+ |  ScrollView                                                 |
+ |                             **                              |
+ |                         active view                         |
+ |   ______________     _______________    _________________   |
+ |  |              |   |               |  |                 |  |
+ |  |              |   |               |  |                 |  |
+ |  |              |   |               |  |                 |  |
+ |  |              |   |               |  |                 |  |
+ |  |    view0     |   |     view1     |  |      view2      |  |
+ |  |              |   |               |  |                 |  |
+ |  |              |   |               |  |                 |  |
+ |  |______________|   |_______________|  |_________________|  |
+ |                                                             |
+ |                                                             |
+ |  Also, an overlay view is placed over the scrollview as a   |
+ |  sibling subview to the UIWindow.                           |
+ |                                                             |
+ |                                                             |
+ |                                                             |
+ |                    +----------------+                       |
+ |                    |                |                       |
+ |                    |    overlay     |                       |
+ |                    |      view      |                       |
+ |                    |                |                       |
+ |                    |                |                       |
+ |                    +----------------+                       |
+ |                                                             |
+ +-------------------------------------------------------------+
+ 
+***************************************************************/
+
+- (void)loadView
 {
   if (messages == nil )
     [self loadMessages];
@@ -56,8 +93,8 @@ static NSUInteger kNumberOfPages = 3;
   scrollView.scrollsToTop = NO;
   scrollView.delegate = self;
   
-  pageControl.numberOfPages = kNumberOfPages;
-  pageControl.currentPage = 0;
+  numberOfPages = kNumberOfPages;
+  currentPage = 0;
   
   // pages are created on demand
   // load the visible page
@@ -72,12 +109,14 @@ static NSUInteger kNumberOfPages = 3;
   
 }
 
-
+// returns scrollview
 - (UIView *)view
 {
   return self.scrollView;
 }
 
+
+// load scroll view with page
 - (void)loadScrollViewWithPage:(int)page
 {
   
@@ -111,17 +150,97 @@ static NSUInteger kNumberOfPages = 3;
   
 }
 
--(void)updateTweets {
-  
+// load the overlay view, scroll the scrollview to center view, unload overlay view
+/*
+-(void) loadView: will place three UIViews within a UIScrollView
 
-}
+ step 1
++-------------------------------------------------------------+
+|                                                             |
+|  ScrollView - scrolled                                      |
+|                                                             |
+|                                                             |
+|                                                             |
+|         **                                                  |
+|     active view                                             |
+|   ______________     _______________    _________________   |
+|  |              |   |               |  |                 |  |
+|  |              |   |               |  |                 |  |
+|  |              |   |               |  |                 |  |
+|  |              |   |               |  |                 |  |
+|  |    view0     |   |     view1     |  |      view2      |  |
+|  |              |   |               |  |                 |  |
+|  |              |   |               |  |                 |  |
+|  |______________|   |_______________|  |_________________|  |
+|                                                             |
+|                                                             |
++-------------------------------------------------------------+
+
+ step 2
++-------------------------------------------------------------+
+|                                                             |
+|                                                             |
+|  load overlay and fill with data from view0                 |
+|                                                             |
+|       **                                                    |
+|                                                             |
+|   ______________     _______________    _________________   |
+|  |              |   |               |  |                 |  |
+|  |              |   |               |  |                 |  |
+|  |              |   |               |  |                 |  |
+|  |              |   |               |  |                 |  |
+|  |   overlay    |   |     view1     |  |      view2      |  |
+|  |              |   |               |  |                 |  |
+|  |              |   |               |  |                 |  |
+|  |______________|   |_______________|  |_________________|  |
+|                                                             |
+|                                                             |
++-------------------------------------------------------------+
+
+ step 3
++-------------------------------------------------------------+
+|                                                             |
+|                                                             |
+|                                                             |
+| Scroll the scroll view to center view. Load overlay data    |
+|  onto view1. Unload overlay.                                |
+|                                                             |
+|                            **                               |
+|                        active view                          |
+|                                                             |
+|   ______________     _______________    _________________   |
+|  |              |   |               |  |                 |  |
+|  |              |   |               |  |                 |  |
+|  |              |   |               |  |                 |  |
+|  |              |   |               |  |                 |  |
+|  |    view0     |   |     view1     |  |      view2      |  |
+|  |              |   |               |  |                 |  |
+|  |              |   |               |  |                 |  |
+|  |______________|   |_______________|  |_________________|  |
+|                                                             |
+|  Also, an overlay view is placed over the scrollview as a   |
+|  sibling subview to the UIWindow.                           |
+|                                                             |
+|                                                             |
+|                                                             |
+|                    +----------------+                       |
+|                    |                |                       |
+|                    |    overlay     |                       |
+|                    |      view      |                       |
+|                    |                |                       |
+|                    |                |                       |
+|                    +----------------+                       |
+|                                                             |
++-------------------------------------------------------------+
+
+***************************************************************/
 
 -(void) loadOverlay {
   
   int scrollTo = 1;
-  int page = pageControl.currentPage;
+  int page = currentPage;
 
-  View *currentView = [viewControllers objectAtIndex:pageControl.currentPage];
+  View *currentView = [viewControllers objectAtIndex:currentPage];
   overlay.message.text = currentView.message.text;
   
   overlay.view.hidden = NO;
@@ -139,9 +258,6 @@ static NSUInteger kNumberOfPages = 3;
     scrollTo = kNumberOfPages;
   }
   
-  
-  
-  
   // update the scroll view to the appropriate page
   CGRect frame = scrollView.frame;
   frame.origin.x = frame.size.width * scrollTo;
@@ -152,89 +268,53 @@ static NSUInteger kNumberOfPages = 3;
   
 }
 
--(void) removeOverlay {
 
-  
-  
+// remove overlay view
+-(void) removeOverlay {
   
   overlay.view.hidden = YES;
   
 }
 
-
+// load each page with data on scroll.
 - (void)scrollViewDidScroll:(UIScrollView *)sender
 {
-  // We don't want a "feedback loop" between the UIPageControl and the scroll delegate in
-  // which a scroll event generated from the user hitting the page control triggers updates from
-  // the delegate method. We use a boolean to disable the delegate logic when the page control is used.
-  if (pageControlUsed)
-  {
-    // do nothing - the scroll was initiated from the page control, not the user dragging
-    return;
-  }
 	
   // Switch the indicator when more than 50% of the previous/next page is visible
   CGFloat pageWidth = scrollView.frame.size.width;
   int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
   
-  pageControl.currentPage = page;
+  currentPage = page;
   
   
   // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
   [self loadScrollViewWithPage:page - 1];
   [self loadScrollViewWithPage:page];
   [self loadScrollViewWithPage:page + 1];
-  
-  
-  
 
-  
-  // A possible optimization would be to unload the views+controllers which are no longer visible
 }
 
-// At the begin of scroll dragging, reset the boolean used when scrolls originate from the UIPageControl
+
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-  //NSLog(@"begin scrolling");
-  [self removeOverlay];
-  pageControlUsed = NO;
+  //override if necessary
 }
 
-// At the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl
+// load scroll view at end of deceleration. Fired once for each scroll.
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
+  //load overlay view.
   [self loadOverlay];
 
-  //NSLog(@"decelerated");
-  pageControlUsed = NO;
 }
 
+// sends end of scrolling event.
 - (void) scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView  {
   //NSLog(@"scrollview did end scrolling");
-  //if ( pageControl.currentPage != 1 )
-  //  NSLog(@"do magic %i", pageControl.currentPage);
 }
 
-- (IBAction)changePage:(id)sender
-{
-  //NSLog(@"change page");
-  int page = pageControl.currentPage;
-	
-  // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
-  [self loadScrollViewWithPage:page - 1];
-  [self loadScrollViewWithPage:page];
-  [self loadScrollViewWithPage:page + 1];
-  
-	// update the scroll view to the appropriate page
-  CGRect frame = scrollView.frame;
-  frame.origin.x = frame.size.width * page;
-  frame.origin.y = 0;
-  [scrollView scrollRectToVisible:frame animated:YES];
-  
-	// Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
-  pageControlUsed = YES;
-}
 
+// load views with mock data.
 -(void) loadMessages {
   
   messages = [[NSMutableArray alloc] initWithCapacity:100];

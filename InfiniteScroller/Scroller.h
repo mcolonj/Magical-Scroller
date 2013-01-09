@@ -1,5 +1,5 @@
 //
-//  vcTwitter.h
+//  Scroller.h
 //  MichaelColon
 //
 //  Created by Michael Colon on 1/4/13.

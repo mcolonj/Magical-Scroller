@@ -1,5 +1,5 @@
 //
-//  TwitterContentController.h
+//  ScrollController.h
 //  MichaelColon
 //
 //  Created by Michael Colon on 1/2/13.
@@ -14,7 +14,7 @@
 @interface ScrollController : ContentController <UIScrollViewDelegate> {
   
   UIScrollView *scrollView;
-  UIPageControl *pageControl;
+
   NSMutableArray *viewControllers;
   NSMutableArray *messages;
   UIView *parentView;
@@ -26,19 +26,20 @@
   // To be used when scrolls originate from the UIPageControl
   BOOL pageControlUsed;
   int messageIndex;
-  
+  int currentPage;
+  int numberOfPages;
   
   
 }
 
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, retain) NSMutableArray *viewControllers;
 @property (nonatomic, retain) IBOutlet UIView *parentView;
 @property (nonatomic, retain) IBOutlet UIView *overlayView;
 
 -(id)init;
+-(void) loadView;
 - (IBAction)changePage:(id)sender;
 -(void) loadMessages;
 

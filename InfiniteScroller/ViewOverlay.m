@@ -1,5 +1,5 @@
 //
-//  vcmessageOverlay.m
+//  ViewOverlay.m
 //  MichaelColon
 //
 //  Created by Michael Colon on 1/4/13.
@@ -39,26 +39,26 @@
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-  
-  //NSLog(@"touches");
-  self.view.hidden = YES;
-  [self.forawardView touchesBegan:touches withEvent:event];
-}
-
--(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-  
-}
-
--(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-  
-}
+//- (void)didReceiveMemoryWarning
+//{
+//    [super didReceiveMemoryWarning];
+//    // Dispose of any resources that can be recreated.
+//}
+//
+//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//  
+//  //NSLog(@"touches");
+//  self.view.hidden = YES;
+//  [self.forawardView touchesBegan:touches withEvent:event];
+//}
+//
+//-(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+//  
+//}
+//
+//-(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+//  
+//}
 
 
 @end

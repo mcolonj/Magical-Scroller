@@ -1,5 +1,5 @@
 //
-//  vcmessage.m
+//  View.m
 //  MichaelColon
 //
 //  Created by Michael Colon on 1/4/13.
@@ -37,9 +37,9 @@
   
 }
 
--(void) loadView {
-  
-}
+//-(void) loadView {
+//
+//}
 
 - (void)viewDidLoad
 {
