@@ -21,7 +21,24 @@ The secret lies in the overlay view. A UIView that is hidden and displayed witho
 7. Each UIView in the UIScrollView is loaded with its new data/look.
 8. The overlay UIView is hidden.
 
+### Seamlessness ###
 
 This process happens each time a scroll occurs. It gives the appearance of an infinitely scrolling UIScrollView.
 
-However it only contains three UIViews and an overlay UIView providing the slight-of-hand magic.
+However it only contains three UIViews and an overlay UIView providing the slight-of-hand magic. Each UIView is scrolling, hiding, and shifting in order to perform the necessary steps to appear seamless.
+
+
+## The Files ##
+
+The project started as an adeptation to the PageControl project available for download on the apple developer website. 
+
+*It has since taken a life of it's own, but contains one .h and .m file from that project. The ContentControl base class. I have decided to keep this class for now, but will eventually replace it.*
+
+
+* ContentController - inherits NSObject.
+* ScrollController - inherits from PageControl.
+* Scroller - inherits from UIViewController.
+* View - inherits from UIViewController.
+* OverlayView - inherits from UIViewController
+
+
