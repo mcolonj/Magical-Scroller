@@ -21,6 +21,7 @@
 
   
   [super loadView];
+  
 
   scrollController = [[ScrollController alloc] init];
   self.scrollController = scrollController;

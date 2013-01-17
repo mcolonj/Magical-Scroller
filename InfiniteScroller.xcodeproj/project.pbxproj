@@ -461,6 +461,7 @@
 				4CE6FF10169C763E00719E30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4CE6FF11169C763E00719E30 /* Build configuration list for PBXNativeTarget "InfiniteScrollerTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +470,7 @@
 				4CE6FF13169C763E00719E30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

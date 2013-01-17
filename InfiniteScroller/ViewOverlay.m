@@ -20,7 +20,9 @@
     self = [super init];
     if (self) {
       
-      UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,460)];
+      
+      UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
       view.backgroundColor = [UIColor blackColor];
 
       message = [[UILabel alloc] initWithFrame:view.frame];
