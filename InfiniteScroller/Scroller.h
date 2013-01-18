@@ -22,6 +22,7 @@
   int messageIndex;
   int currentPage;
   //int numberOfPages;
+  BOOL justLoaded;
 }
 
 //@property (nonatomic, retain) IBOutlet ScrollController *scrollController;

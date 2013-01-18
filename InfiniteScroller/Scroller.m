@@ -31,6 +31,13 @@ static NSUInteger kNumberOfPages = 3;
 
   [super loadView];
   
+  if (messages == nil )
+    [self loadMessages];
+  
+  [self setupViewControllersArray];
+  
+  [self sizeScrollView];
+  
   CGRect frame = [[UIScreen mainScreen] bounds];
   
   UIView *view = [[UIView alloc] initWithFrame:frame];
@@ -45,12 +52,27 @@ static NSUInteger kNumberOfPages = 3;
   scrollView.autoresizesSubviews = YES;
   scrollView.contentMode = UIViewContentModeScaleAspectFill;
   
+  scrollView.pagingEnabled = YES;
+  scrollView.delegate = self;
+  
+  //numberOfPages = kNumberOfPages;
+  currentPage = 0;
+  
   [view addSubview:scrollView];
   
   self.view = view;
   
-  [self setupViews];
-  NSLog(@"loadView");
+  [self loadScrollViewWithPage:0];
+  [self loadScrollViewWithPage:1];
+  
+  
+  // init overlay view
+  overlay = [[ViewOverlay alloc] init];
+  overlay.view.autoresizesSubviews = YES;
+  overlay.view.hidden = YES;
+  [self.view addSubview:overlay.view];
+  
+  justLoaded = YES;
   
 }
 
@@ -58,7 +80,7 @@ static NSUInteger kNumberOfPages = 3;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	  // Do any additional setup after loading the view.
 }
 
 
@@ -68,26 +90,21 @@ static NSUInteger kNumberOfPages = 3;
     // Dispose of any resources that can be recreated.
 }
 
-//-(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-//  
-//  NSLog(@"did rotate %@", NSStringFromCGRect(scrollView.bounds));
-//}
-//
-//-(void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-//  NSLog(@"will rotate fired");
-//}
-
 -(void) viewWillLayoutSubviews {
   
-  // minimal setup when rotating
+  int page = 1;
   //reset scrollview contentsize, reload the left page and visible page.
-  scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * kNumberOfPages, scrollView.frame.size.height);
+  scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * kNumberOfPages,
+                                      scrollView.frame.size.height);
   
   [self loadScrollViewWithPage:0];
   [self loadScrollViewWithPage:1];
   [self loadScrollViewWithPage:2];
 
-  [self moveScrollViewTo:1 animated:YES];
+  if ( justLoaded )
+    page = 0;
+  
+  [self moveScrollViewTo:page animated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -128,14 +145,11 @@ static NSUInteger kNumberOfPages = 3;
  |                    +----------------+                       |
  |                                                             |
  +-------------------------------------------------------------+
+
  
  ***************************************************************/
 
-- (void)setupViews
-{
-  
-  if (messages == nil )
-    [self loadMessages];
+-(void) setupViewControllersArray {
   
   NSMutableArray *controllers = [[NSMutableArray alloc] init];
   for (unsigned i = 0; i < kNumberOfPages+1; i++)
@@ -143,28 +157,6 @@ static NSUInteger kNumberOfPages = 3;
 		[controllers addObject:[NSNull null]];
   }
   self.viewControllers = controllers;
-  
-  [self sizeScrollView];
-  scrollView.pagingEnabled = YES;
-
-  scrollView.delegate = self;
-  
-  //numberOfPages = kNumberOfPages;
-  currentPage = 0;
-  
-  // pages are created on demand
-  // load the visible page
-  // load the page on either side to avoid flashes when the user starts scrolling
-  //
-  [self loadScrollViewWithPage:0];
-  [self loadScrollViewWithPage:1];
-  
-  
-  // init overlay view
-  overlay = [[ViewOverlay alloc] init];
-  overlay.view.autoresizesSubviews = YES;
-  overlay.view.hidden = YES;
-  [self.view addSubview:overlay.view];
   
 }
 
@@ -217,7 +209,11 @@ static NSUInteger kNumberOfPages = 3;
   
 }
 
-// load scroll view with page
+-(View*) currentViewController {
+  
+  return [viewControllers objectAtIndex:currentPage];
+}
+
 - (void)loadScrollViewWithPage:(int)page
 {
   // check page is valid
@@ -327,72 +323,77 @@ static NSUInteger kNumberOfPages = 3;
   int scrollTo = 1;
   int page = currentPage;
   
-  View *currentView = [viewControllers objectAtIndex:currentPage];
+  // get current view
+  View *currentView = [self currentViewController];
+  
+  //load text
   overlay.message.text = currentView.message.text;
   
+  // show overlay
   overlay.view.hidden = NO;
   
+  // update messageIndex for page other then 1
   if ( page == 0 )
     messageIndex--;
   else if ( page == 2 )
     messageIndex++;
   
+  // clip message index to 0 or count - number of pages.
   if (messageIndex < 0 ) {
     messageIndex = 0;
-    scrollTo = 0;
-  } else if (messageIndex > [messages count] - 3) {
-    messageIndex = [messages count] - 3;
-    scrollTo = kNumberOfPages;
+    scrollTo = 0; // keep first message on first page
+  } else if (messageIndex > [messages count] - kNumberOfPages) {
+    messageIndex = [messages count] - kNumberOfPages;
+    scrollTo = kNumberOfPages; // keep last message on last page
   }
   
+  // scroll to proper page
   [self moveScrollViewTo:scrollTo animated:NO];
   
   overlay.view.hidden = YES;
   
 }
 
-
-// remove overlay view
 -(void) removeOverlay {
   overlay.view.hidden = YES;
 }
 
-// load each page with data on scroll.
 - (void)scrollViewDidScroll:(UIScrollView *)sender
 {
+  justLoaded = NO;
   // Switch the indicator when more than 50% of the previous/next page is visible
   CGFloat pageWidth = scrollView.frame.size.width;
-  int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
   
+  int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
   currentPage = page;
   
-  // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
+  // load the visible page and the page on either side of it
+  //(to avoid flashes when the user starts scrolling)
   [self loadScrollViewWithPage:page - 1];
   [self loadScrollViewWithPage:page];
   [self loadScrollViewWithPage:page + 1];
   
 }
 
-
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
   //override if necessary
 }
 
-// load scroll view at end of deceleration. Fired once for each scroll.
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
   //load overlay view.
   [self loadOverlay];
 }
 
-// sends end of scrolling event.
+
 - (void) scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView  {
   //NSLog(@"scrollview did end scrolling");
 }
 
 
-// load views with mock data.
+// load messages / data model
 -(void) loadMessages {
   
   messages = [[NSMutableArray alloc] initWithCapacity:100];
