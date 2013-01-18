@@ -11,11 +11,25 @@
 
 @interface Scroller : UIViewController <UIScrollViewDelegate> {
   
-  ScrollController *scrollController;
+  //ScrollController *scrollController;
   
+  NSMutableArray *viewControllers;
+  NSMutableArray *messages;
+  UIView *overlayView;
+  UIScrollView *scrollView;
+  ViewOverlay *overlay;
+  
+  int messageIndex;
+  int currentPage;
+  //int numberOfPages;
 }
 
-@property (nonatomic, retain) IBOutlet ScrollController *scrollController;
+//@property (nonatomic, retain) IBOutlet ScrollController *scrollController;
+
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) NSMutableArray *viewControllers;
+@property (nonatomic, retain) IBOutlet UIView *overlayView;
+
 
 -(id)init;
 @end

@@ -85,12 +85,8 @@ static NSUInteger kNumberOfPages = 3;
   self.viewControllers = controllers;
   
   
-  // a page is the width of the scroll view
   scrollView.pagingEnabled = YES;
   scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * kNumberOfPages, scrollView.frame.size.height);
-  scrollView.showsHorizontalScrollIndicator = NO;
-  scrollView.showsVerticalScrollIndicator = NO;
-  scrollView.scrollsToTop = NO;
   scrollView.delegate = self;
   
   numberOfPages = kNumberOfPages;
@@ -104,6 +100,7 @@ static NSUInteger kNumberOfPages = 3;
   [self loadScrollViewWithPage:1];
   
   overlay = [[ViewOverlay alloc] init];
+  overlay.view.autoresizesSubviews = YES;
   overlay.view.hidden = YES;
   [parentView addSubview:overlay.view];
   
@@ -130,16 +127,23 @@ static NSUInteger kNumberOfPages = 3;
   if ((NSNull *)controller == [NSNull null])
   {
     controller = [[View alloc] initWithPageNumber:page];
+    controller.view.autoresizesSubviews = YES;
+    controller.view.contentMode = UIViewContentModeScaleAspectFill;
     [viewControllers replaceObjectAtIndex:page withObject:controller];
   }
   
   // add the controller's view to the scroll view
+  CGRect frame = scrollView.frame;
+  frame.origin.x = frame.size.width * page;
+  frame.origin.y = 0;
+  controller.view.frame = frame;
+  
   if (controller.view.superview == nil)
   {
-    CGRect frame = scrollView.frame;
-    frame.origin.x = frame.size.width * page;
-    frame.origin.y = 0;
-    controller.view.frame = frame;
+//    CGRect frame = scrollView.frame;
+//    frame.origin.x = frame.size.width * page;
+//    frame.origin.y = 0;
+//    controller.view.frame = frame;
     [scrollView addSubview:controller.view];
     
   }
@@ -328,6 +332,10 @@ static NSUInteger kNumberOfPages = 3;
 
   messageIndex = 0;
 }
+
+
+
+
 
 
 

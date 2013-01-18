@@ -23,14 +23,7 @@
     
     pageNumber = page;
     
-    UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    view.backgroundColor = [UIColor blackColor];
-    message = [[UILabel alloc] initWithFrame:view.frame];
-    message.numberOfLines = 6;
-    message.lineBreakMode = NSLineBreakByWordWrapping;
-    [view addSubview:message];
     
-    self.view = view;
     
   }
   return self;
@@ -38,9 +31,24 @@
   
 }
 
-//-(void) loadView {
-//
-//}
+-(void) loadView {
+
+  UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  view.backgroundColor = [UIColor blackColor];
+  view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+  view.autoresizesSubviews = YES;
+  view.contentMode = UIViewContentModeScaleAspectFill;
+  
+  message = [[UILabel alloc] initWithFrame:view.frame];
+  message.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+  message.contentMode = UIViewContentModeScaleAspectFill;
+  message.numberOfLines = 6;
+  message.lineBreakMode = NSLineBreakByWordWrapping;
+  [view addSubview:message];
+  
+  self.view = view;
+  
+}
 
 - (void)viewDidLoad
 {
@@ -53,6 +61,17 @@
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  return YES;
+}
+
+-(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+  
+  NSLog(@"fired2");
+  
+}
+
 
 
 @end
