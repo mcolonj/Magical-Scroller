@@ -22,10 +22,8 @@
 		4CE6FF08169C763E00719E30 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4CE6FF06169C763E00719E30 /* InfoPlist.strings */; };
 		4CE6FF0B169C763E00719E30 /* InfiniteScrollerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6FF0A169C763E00719E30 /* InfiniteScrollerTests.m */; };
 		4CE6FF1C169C76FB00719E30 /* Scroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6FF14169C76FB00719E30 /* Scroller.m */; };
-		4CE6FF1D169C76FB00719E30 /* ScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6FF16169C76FB00719E30 /* ScrollController.m */; };
 		4CE6FF1E169C76FB00719E30 /* View.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6FF18169C76FB00719E30 /* View.m */; };
 		4CE6FF1F169C76FB00719E30 /* ViewOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6FF19169C76FB00719E30 /* ViewOverlay.m */; };
-		4CE6FF22169C787D00719E30 /* ContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6FF20169C787D00719E30 /* ContentController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,14 +58,10 @@
 		4CE6FF0A169C763E00719E30 /* InfiniteScrollerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollerTests.m; sourceTree = "<group>"; };
 		4CE6FF14169C76FB00719E30 /* Scroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scroller.m; sourceTree = "<group>"; };
 		4CE6FF15169C76FB00719E30 /* Scroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scroller.h; sourceTree = "<group>"; };
-		4CE6FF16169C76FB00719E30 /* ScrollController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollController.m; sourceTree = "<group>"; };
-		4CE6FF17169C76FB00719E30 /* ScrollController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollController.h; sourceTree = "<group>"; };
 		4CE6FF18169C76FB00719E30 /* View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = View.m; sourceTree = "<group>"; };
 		4CE6FF19169C76FB00719E30 /* ViewOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewOverlay.m; sourceTree = "<group>"; };
 		4CE6FF1A169C76FB00719E30 /* View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View.h; sourceTree = "<group>"; };
 		4CE6FF1B169C76FB00719E30 /* ViewOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewOverlay.h; sourceTree = "<group>"; };
-		4CE6FF20169C787D00719E30 /* ContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentController.m; sourceTree = "<group>"; };
-		4CE6FF21169C787D00719E30 /* ContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,12 +121,8 @@
 		4CE6FEDC169C763D00719E30 /* InfiniteScroller */ = {
 			isa = PBXGroup;
 			children = (
-				4CE6FF20169C787D00719E30 /* ContentController.m */,
-				4CE6FF21169C787D00719E30 /* ContentController.h */,
 				4CE6FF14169C76FB00719E30 /* Scroller.m */,
 				4CE6FF15169C76FB00719E30 /* Scroller.h */,
-				4CE6FF16169C76FB00719E30 /* ScrollController.m */,
-				4CE6FF17169C76FB00719E30 /* ScrollController.h */,
 				4CE6FF18169C76FB00719E30 /* View.m */,
 				4CE6FF19169C76FB00719E30 /* ViewOverlay.m */,
 				4CE6FF1A169C76FB00719E30 /* View.h */,
@@ -289,10 +279,8 @@
 				4CE6FEE3169C763E00719E30 /* main.m in Sources */,
 				4CE6FEE7169C763E00719E30 /* AppDelegate.m in Sources */,
 				4CE6FF1C169C76FB00719E30 /* Scroller.m in Sources */,
-				4CE6FF1D169C76FB00719E30 /* ScrollController.m in Sources */,
 				4CE6FF1E169C76FB00719E30 /* View.m in Sources */,
 				4CE6FF1F169C76FB00719E30 /* ViewOverlay.m in Sources */,
-				4CE6FF22169C787D00719E30 /* ContentController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

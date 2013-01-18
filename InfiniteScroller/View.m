@@ -66,12 +66,6 @@
   return YES;
 }
 
--(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-  
-  NSLog(@"fired2");
-  
-}
-
 
 
 @end

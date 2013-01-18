@@ -27,6 +27,42 @@ static NSUInteger kNumberOfPages = 3;
   
 }
 
+/**************************************************************
+ 
+ +-------------------------------------------------------------+
+ |                                                             |
+ |  ScrollView                                                 |
+ |                             **                              |
+ |                         active view                         |
+ |   ______________     _______________    _________________   |
+ |  |              |   |               |  |                 |  |
+ |  |              |   |               |  |                 |  |
+ |  |              |   |               |  |                 |  |
+ |  |              |   |               |  |                 |  |
+ |  |    view0     |   |     view1     |  |      view2      |  |
+ |  |              |   |               |  |                 |  |
+ |  |              |   |               |  |                 |  |
+ |  |______________|   |_______________|  |_________________|  |
+ |                                                             |
+ |                                                             |
+ |  Also, an overlay view is placed over the scrollview as a   |
+ |  sibling subview to the UIWindow.                           |
+ |                                                             |
+ |                                                             |
+ |                                                             |
+ |                    +----------------+                       |
+ |                    |                |                       |
+ |                    |    overlay     |                       |
+ |                    |      view      |                       |
+ |                    |                |                       |
+ |                    |                |                       |
+ |                    +----------------+                       |
+ |                                                             |
+ +-------------------------------------------------------------+
+ 
+ 
+ ***************************************************************/
+
 -(void) loadView {
 
   [super loadView];
@@ -55,7 +91,6 @@ static NSUInteger kNumberOfPages = 3;
   scrollView.pagingEnabled = YES;
   scrollView.delegate = self;
   
-  //numberOfPages = kNumberOfPages;
   currentPage = 0;
   
   [view addSubview:scrollView];
@@ -110,44 +145,6 @@ static NSUInteger kNumberOfPages = 3;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   return YES;
 }
-
-/**************************************************************
- 
- -(void) loadView: will place three UIViews within a UIScrollView
- 
- +-------------------------------------------------------------+
- |                                                             |
- |  ScrollView                                                 |
- |                             **                              |
- |                         active view                         |
- |   ______________     _______________    _________________   |
- |  |              |   |               |  |                 |  |
- |  |              |   |               |  |                 |  |
- |  |              |   |               |  |                 |  |
- |  |              |   |               |  |                 |  |
- |  |    view0     |   |     view1     |  |      view2      |  |
- |  |              |   |               |  |                 |  |
- |  |              |   |               |  |                 |  |
- |  |______________|   |_______________|  |_________________|  |
- |                                                             |
- |                                                             |
- |  Also, an overlay view is placed over the scrollview as a   |
- |  sibling subview to the UIWindow.                           |
- |                                                             |
- |                                                             |
- |                                                             |
- |                    +----------------+                       |
- |                    |                |                       |
- |                    |    overlay     |                       |
- |                    |      view      |                       |
- |                    |                |                       |
- |                    |                |                       |
- |                    +----------------+                       |
- |                                                             |
- +-------------------------------------------------------------+
-
- 
- ***************************************************************/
 
 -(void) setupViewControllersArray {
   
@@ -375,21 +372,11 @@ static NSUInteger kNumberOfPages = 3;
   
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-  //override if necessary
-}
-
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
   //load overlay view.
   [self loadOverlay];
-}
-
-
-- (void) scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView  {
-  //NSLog(@"scrollview did end scrolling");
 }
 
 

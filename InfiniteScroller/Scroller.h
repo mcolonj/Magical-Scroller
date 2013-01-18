@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ScrollController.h"
+#import "ViewOverlay.h"
+#import "View.h"
+
 
 @interface Scroller : UIViewController <UIScrollViewDelegate> {
   
@@ -21,11 +23,8 @@
   
   int messageIndex;
   int currentPage;
-  //int numberOfPages;
   BOOL justLoaded;
 }
-
-//@property (nonatomic, retain) IBOutlet ScrollController *scrollController;
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) NSMutableArray *viewControllers;

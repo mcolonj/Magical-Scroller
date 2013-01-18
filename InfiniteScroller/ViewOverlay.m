@@ -47,42 +47,10 @@
 	// Do any additional setup after loading the view.
 }
 
-//- (void)didReceiveMemoryWarning
-//{
-//    [super didReceiveMemoryWarning];
-//    // Dispose of any resources that can be recreated.
-//}
-//
-//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//  
-//  //NSLog(@"touches");
-//  self.view.hidden = YES;
-//  [self.forawardView touchesBegan:touches withEvent:event];
-//}
-//
-//-(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-//  
-//}
-//
-//-(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-//  
-//}
-
-//-(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-//  
-//  UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//  view.backgroundColor = [UIColor blackColor];
-//  message = [[UILabel alloc] initWithFrame:view.frame];
-//  message.numberOfLines = 6;
-//  message.lineBreakMode = NSLineBreakByWordWrapping;
-//  [view addSubview:message];
-//  
-//  self.view = view;
-//  
-//}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-  NSLog(@"bounds = %@", NSStringFromCGRect(self.view.bounds));
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
