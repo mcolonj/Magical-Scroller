@@ -78,6 +78,7 @@ static NSUInteger kNumberOfPages = 3;
 //}
 
 -(void) viewWillLayoutSubviews {
+  
   // minimal setup when rotating
   //reset scrollview contentsize, reload the left page and visible page.
   scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * kNumberOfPages, scrollView.frame.size.height);
@@ -85,12 +86,6 @@ static NSUInteger kNumberOfPages = 3;
   [self loadScrollViewWithPage:0];
   [self loadScrollViewWithPage:1];
   [self loadScrollViewWithPage:2];
-  
-//  // update the scroll view to the appropriate page
-//  CGRect frame = scrollView.frame;
-//  frame.origin.x = frame.size.width * 1;
-//  frame.origin.y = 0;
-//  [scrollView scrollRectToVisible:frame animated:YES];
 
   [self moveScrollViewTo:1 animated:YES];
 }
@@ -149,9 +144,9 @@ static NSUInteger kNumberOfPages = 3;
   }
   self.viewControllers = controllers;
   
-  
+  [self sizeScrollView];
   scrollView.pagingEnabled = YES;
-  scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * kNumberOfPages, scrollView.frame.size.height);
+
   scrollView.delegate = self;
   
   //numberOfPages = kNumberOfPages;
@@ -164,6 +159,8 @@ static NSUInteger kNumberOfPages = 3;
   [self loadScrollViewWithPage:0];
   [self loadScrollViewWithPage:1];
   
+  
+  // init overlay view
   overlay = [[ViewOverlay alloc] init];
   overlay.view.autoresizesSubviews = YES;
   overlay.view.hidden = YES;
@@ -171,12 +168,29 @@ static NSUInteger kNumberOfPages = 3;
   
 }
 
-//// returns scrollview
-//- (UIView *)view
-//{
-//  return self.scrollView;
-//}
+-(BOOL) isValidPage:(int) page {
+  
+  if (page < 0 || page >= kNumberOfPages)
+    return NO;
+  
+  return YES;
+}
 
+-(void) sizeScrollView {
+  
+  scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * kNumberOfPages, scrollView.frame.size.height);
+  
+}
+
+-(CGRect) frameForPage:(int)page {
+  
+  CGRect frame = scrollView.frame;
+  frame.origin.x = frame.size.width * page;
+  frame.origin.y = 0;
+  
+  return frame;
+  
+}
 
 -(void) moveScrollViewTo:(int)page animated:(BOOL)animated {
   
@@ -188,16 +202,8 @@ static NSUInteger kNumberOfPages = 3;
   
 }
 
-// load scroll view with page
-- (void)loadScrollViewWithPage:(int)page
-{
+-(View*) viewControllerForPage:(int)page {
   
-  if (page < 0)
-    return;
-  if (page >= kNumberOfPages)
-    return;
-  
-  // replace the placeholder if necessary
   View *controller = [viewControllers objectAtIndex:page];
   if ((NSNull *)controller == [NSNull null])
   {
@@ -207,25 +213,28 @@ static NSUInteger kNumberOfPages = 3;
     [viewControllers replaceObjectAtIndex:page withObject:controller];
   }
   
-  CGRect frame = scrollView.frame;
-  frame.origin.x = frame.size.width * page;
-  frame.origin.y = 0;
-  controller.view.frame = frame;
+  return controller;
+  
+}
+
+// load scroll view with page
+- (void)loadScrollViewWithPage:(int)page
+{
+  // check page is valid
+  if ( ! [self isValidPage:page] ) return;
+
+  //get view for page
+  View* controller = [self viewControllerForPage:page];
+  
+  //set controller view frame for page
+  controller.view.frame = [self frameForPage:page];
   
   // add the controller's view to the scroll view
   if (controller.view.superview == nil)
-  {
-//    CGRect frame = scrollView.frame;
-//    frame.origin.x = frame.size.width * page;
-//    frame.origin.y = 0;
-//    controller.view.frame = frame;
     [scrollView addSubview:controller.view];
-    
-  }
   
   NSDictionary *dict = [messages objectAtIndex:messageIndex+page];
   controller.message.text = [dict valueForKey:@"text"];
-  
   
 }
 
@@ -335,12 +344,6 @@ static NSUInteger kNumberOfPages = 3;
     messageIndex = [messages count] - 3;
     scrollTo = kNumberOfPages;
   }
-  
-//  // update the scroll view to the appropriate page
-//  CGRect frame = scrollView.frame;
-//  frame.origin.x = frame.size.width * scrollTo;
-//  frame.origin.y = 0;
-//  [scrollView scrollRectToVisible:frame animated:NO];
   
   [self moveScrollViewTo:scrollTo animated:NO];
   
