@@ -77,30 +77,22 @@ static NSUInteger kNumberOfPages = 3;
   CGRect frame = [[UIScreen mainScreen] bounds];
   
   UIView *view = [[UIView alloc] initWithFrame:frame];
-  view.backgroundColor = [UIColor yellowColor];
+  view.backgroundColor = [UIColor blackColor];
   view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   view.autoresizesSubviews = YES;
   view.contentMode = UIViewContentModeScaleAspectFill;
-
   scrollView = [[UIScrollView alloc] initWithFrame:frame];
   scrollView.backgroundColor = [UIColor blackColor];
   scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   scrollView.autoresizesSubviews = YES;
   scrollView.contentMode = UIViewContentModeScaleAspectFill;
-  
   scrollView.pagingEnabled = YES;
   scrollView.delegate = self;
-  
   currentPage = 0;
-  
   [view addSubview:scrollView];
-  
   self.view = view;
-  
   [self loadScrollViewWithPage:0];
   [self loadScrollViewWithPage:1];
-  
-  
   // init overlay view
   overlay = [[ViewOverlay alloc] init];
   overlay.view.autoresizesSubviews = YES;

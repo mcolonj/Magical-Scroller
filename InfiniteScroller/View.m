@@ -34,7 +34,7 @@
 -(void) loadView {
 
   UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-  view.backgroundColor = [UIColor blackColor];
+  view.backgroundColor = [UIColor whiteColor];
   view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   view.autoresizesSubviews = YES;
   view.contentMode = UIViewContentModeScaleAspectFill;
@@ -42,6 +42,7 @@
   message = [[UILabel alloc] initWithFrame:view.frame];
   message.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   message.contentMode = UIViewContentModeScaleAspectFill;
+  message.textAlignment = NSTextAlignmentCenter;
   message.numberOfLines = 6;
   message.lineBreakMode = NSLineBreakByWordWrapping;
   [view addSubview:message];

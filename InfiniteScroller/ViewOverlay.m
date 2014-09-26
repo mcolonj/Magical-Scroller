@@ -9,21 +9,17 @@
 #import "ViewOverlay.h"
 
 @interface ViewOverlay ()
-
 @end
 
 @implementation ViewOverlay
 
 @synthesize message;
-- (id)init
+- (id) init
 {
     self = [super init];
     if (self) {
-      
-      
       UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-      view.backgroundColor = [UIColor blackColor];
+      view.backgroundColor = [UIColor whiteColor];
       view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
       view.autoresizesSubviews = YES;
       view.contentMode = UIViewAutoresizingFlexibleWidth;
@@ -35,7 +31,6 @@
       message.contentMode = UIViewContentModeScaleAspectFill;
       message.lineBreakMode = NSLineBreakByWordWrapping;
       [view addSubview:message];
-      
       self.view = view;
     }
     return self;
